@@ -14,6 +14,19 @@
 ~/.hermes/skills/
 ```
 
+## 前置依赖
+
+最小必需：
+
+- Hermes Agent
+- Python 3.10+
+- 一个可用的 AI 模型 API Key，用于生成今日摘要和点评
+
+可选增强：
+
+- 飞书文档/消息：需要本机可用的 `lark-cli` 和飞书配置
+- TTS 语音摘要：需要本机已安装并认证 `mmx-cli`，且 `mmx speech synthesize` 可正常执行；它不使用 `MMX_TOKEN_PLAN_KEY` 配置项
+
 ## 第一次使用
 
 在 Hermes 中说：
