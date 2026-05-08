@@ -27,6 +27,18 @@
 - 飞书文档/消息：需要本机可用的 `lark-cli` 和飞书配置
 - TTS 语音摘要：需要本机已安装并认证 `mmx-cli`，且 `mmx speech synthesize` 可正常执行；它不使用 `MMX_TOKEN_PLAN_KEY` 配置项
 
+## 包含的 skills
+
+| Skill | 用途 |
+|---|---|
+| `ai-daily-news-v2` | 主 skill，负责生成完整 AI 每日资讯报告 |
+| `follow-builders-data` | 获取 Follow Builders 讯息数据 |
+| `github-trending` | 获取 GitHub 热门 AI 项目并生成简评 |
+| `ph-review-generator` | 获取 Product Hunt 热门产品并生成简评 |
+| `llm-tasks` | 统一调用 AI 模型 |
+| `tts-audio` | 生成今日摘要的语音 |
+| `feishu-doc` | 创建飞书文档并发送飞书消息 |
+
 ## 第一次使用
 
 在 Hermes 中说：
