@@ -55,10 +55,10 @@ python3 ~/.hermes/skills/feishu-doc/scripts/feishu_doc.py
 
 ## 配置（`.env.feishu`）
 
-安装脚本会在目标目录不存在 `.env.feishu` 时，由 `.env.example` 自动生成：
+安装脚本会在目标目录不存在 `.env.feishu` 时，由 `.env.feishu.example` 自动生成：
 
 ```text
-~/.hermes/skills/feishu-doc/.env.example -> ~/.hermes/skills/feishu-doc/.env.feishu
+~/.hermes/skills/feishu-doc/.env.feishu.example -> ~/.hermes/skills/feishu-doc/.env.feishu
 ```
 
 已有 `.env.feishu` 会被保留，不会被更新覆盖。首次运行时也可通过 `setup_guide.py` 引导配置，或手动编辑 `~/.hermes/skills/feishu-doc/.env.feishu`：

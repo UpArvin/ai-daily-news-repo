@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 feishu-doc 冒烟测试
-运行前需先配置 ~/.hermes/config/feishu-doc.json
+运行前需先配置 feishu-doc/.env.feishu
 """
 import os
 import sys
@@ -11,26 +11,24 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 import feishu_doc
 
-CONFIG_PATH = Path.home() / ".hermes" / "config" / "feishu-doc.json"
-
 def test_config():
     """测试配置是否已配置"""
     print("\n=== 1. 配置检查 ===")
-    if not CONFIG_PATH.exists():
-        print(f"⚠  配置文件不存在: {CONFIG_PATH}")
-        print("  请先 cp config.example.json ~/.hermes/config/feishu-doc.json 并填写真实值")
+    if not feishu_doc.ENV_FILE.exists():
+        print(f"⚠  配置文件不存在: {feishu_doc.ENV_FILE}")
+        print("  请先运行 setup_guide.py，或由安装脚本通过 .env.feishu.example 生成 .env.feishu")
         return False
     try:
         cfg = feishu_doc._load_config()
-        space = cfg.get("wiki", {}).get("space_id", "")
-        chat = cfg.get("message", {}).get("default_chat_id", "")
-        if space.startswith("填你的") or not space:
-            print(f"⚠  wiki.space_id 未配置: {space}")
+        doc_target = cfg.get("folder_token") or cfg.get("wiki_space_id")
+        msg_target = cfg.get("chat_id") or cfg.get("user_id")
+        if not doc_target:
+            print("⚠  未配置文档创建目标: FEISHU_FOLDER_TOKEN 或 FEISHU_WIKI_SPACE_ID")
             return False
-        if chat.startswith("填你的") or not chat:
-            print(f"⚠  message.default_chat_id 未配置: {chat}")
+        if not msg_target:
+            print("⚠  未配置消息发送目标: FEISHU_CHAT_ID 或 FEISHU_USER_ID")
             return False
-        print(f"✓  配置正常: space_id={space[:10]}..., chat_id={chat[:10]}...")
+        print(f"✓  配置正常: doc_target={doc_target[:10]}..., msg_target={msg_target[:10]}...")
         return True
     except Exception as e:
         print(f"✗  配置加载失败: {e}")
@@ -128,7 +126,7 @@ def main():
     ok = test_config()
     results.append(("配置检查", ok))
     if not ok:
-        print("\n⚠  配置未就绪，跳后续测试。请先配置 feishu-doc.json")
+        print("\n⚠  配置未就绪，跳后续测试。请先配置 .env.feishu")
         print_summary(results)
         return 1
 

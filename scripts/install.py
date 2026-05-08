@@ -3,7 +3,7 @@
 Install or update ai-daily-news skills into ~/.hermes/skills.
 
 The installer updates skill code but preserves user environment and config files.
-When an env file is missing, it is generated from the bundled .env.example.
+When an env file is missing, it is generated from the bundled example file.
 """
 import shutil
 import os
@@ -15,15 +15,15 @@ SOURCE_SKILLS = REPO_ROOT / "skills"
 TARGET_SKILLS = Path(os.environ.get("HERMES_SKILLS_DIR", Path.home() / ".hermes" / "skills")).expanduser()
 
 ENV_TARGETS = {
-    "llm-tasks": ".env",
-    "feishu-doc": ".env.feishu",
+    "llm-tasks": (".env", ".env.example"),
+    "feishu-doc": (".env.feishu", ".env.feishu.example"),
 }
 
 
 def _ignore(dir_path, names):
     ignored = {"__pycache__", ".DS_Store", "tests"}
     for name in names:
-        if name.startswith(".env") and name != ".env.example":
+        if name.startswith(".env") and not name.endswith(".example"):
             ignored.add(name)
     return ignored
 
@@ -35,18 +35,19 @@ def copy_skill(skill_dir):
 
 
 def ensure_env(skill_name):
-    target_name = ENV_TARGETS.get(skill_name)
-    if not target_name:
+    target_spec = ENV_TARGETS.get(skill_name)
+    if not target_spec:
         return None
+    target_name, example_name = target_spec
     skill_dir = TARGET_SKILLS / skill_name
-    example = skill_dir / ".env.example"
+    example = skill_dir / example_name
     target = skill_dir / target_name
     if not example.exists():
-        return f"  - {skill_name}: 未找到 .env.example，跳过 env 生成"
+        return f"  - {skill_name}: 未找到 {example_name}，跳过 env 生成"
     if target.exists():
         return f"  - {skill_name}: 保留已有 {target_name}"
     shutil.copy2(example, target)
-    return f"  - {skill_name}: 已由 .env.example 生成 {target_name}"
+    return f"  - {skill_name}: 已由 {example_name} 生成 {target_name}"
 
 
 def main():

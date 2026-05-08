@@ -14,7 +14,7 @@
 
 - Python 3.10+
 - 可用网络
-- 一个 LLM provider 凭证
+- 一个 AI 模型 API Key
 
 默认结果：
 
@@ -91,7 +91,7 @@ python3 scripts/install.py
 
 - 将 `skills/` 下每个子 skill 复制到 `~/.hermes/skills/`
 - 更新代码时保留用户已有 env 文件
-- 如果 env 文件不存在，则由 `.env.example` 生成
+- 如果 env 文件不存在，则由对应 example 文件生成
 - 安装时忽略 `tests/`、`__pycache__/`、`.DS_Store`
 - 不写入 `~/.hermes/config/`，用户配置由运行向导生成或由默认配置兜底
 
@@ -99,7 +99,7 @@ python3 scripts/install.py
 
 ```text
 llm-tasks/.env.example   -> llm-tasks/.env
-feishu-doc/.env.example -> feishu-doc/.env.feishu
+feishu-doc/.env.feishu.example -> feishu-doc/.env.feishu
 ```
 
 ## Hermes Triggers

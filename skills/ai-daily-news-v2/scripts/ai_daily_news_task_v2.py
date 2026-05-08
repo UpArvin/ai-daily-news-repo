@@ -135,18 +135,25 @@ def _llm_env_status():
     cfg = _read_env_file(env_path)
     provider = cfg.get("LLM_PROVIDER", "mmx-cli")
     key_map = {
-        "mmx-cli": "MMX_TOKEN_PLAN_KEY",
-        "openai": "OPENAI_API_KEY",
-        "openrouter": "OPENROUTER_API_KEY",
-        "azure": "AZURE_OPENAI_API_KEY",
-        "google": "GOOGLE_API_KEY",
-        "dashscope": "DASHSCOPE_API_KEY",
-        "zai": "ZAI_API_KEY",
-        "minimax": "MINIMAX_HTTP_API_KEY",
+        "mmx-cli": ["MMX_TOKEN_PLAN_KEY"],
+        "openai": ["OPENAI_API_KEY"],
+        "openrouter": ["OPENROUTER_API_KEY"],
+        "azure": ["AZURE_OPENAI_API_KEY"],
+        "google": ["GOOGLE_API_KEY"],
+        "dashscope": ["DASHSCOPE_API_KEY"],
+        "zai": ["ZAI_API_KEY"],
+        "minimax": ["MINIMAX_HTTP_API_KEY", "MINIMAX_API_KEY"],
     }
-    key_name = key_map.get(provider, "")
-    key_value = cfg.get(key_name, "")
-    complete = bool(key_name and key_value and not _looks_placeholder(key_value))
+    key_names = key_map.get(provider, [])
+    key_name = key_names[0] if key_names else ""
+    key_value = ""
+    for candidate in key_names:
+        value = cfg.get(candidate, "")
+        if value and not _looks_placeholder(value):
+            key_name = candidate
+            key_value = value
+            break
+    complete = bool(key_name and key_value)
     if provider == "mmx-cli" and not complete and shutil.which("mmx"):
         complete = True
     return {
