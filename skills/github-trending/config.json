@@ -1,0 +1,15 @@
+{
+  "ai_keywords": [
+    "ai", "llm", "agent", "claude", "gpt", "deepseek", "openai",
+    "anthropic", "cursor", "rag", "langchain", "model", "token",
+    "chatbot", "coding", "codex", "ollama", "vllm", "embedding",
+    "fine-tune", "vector", "workflow", "autonomous", "automation",
+    "video", "image", "tts", "speech", "stable", "diffusion",
+    "midjourney", "generative", "gemma", "qwen", "kimi", "minimax",
+    "mistral", "phi", "gemini"
+  ],
+  "trending": {
+    "period": "past_24_hours",
+    "limit": 5
+  }
+}

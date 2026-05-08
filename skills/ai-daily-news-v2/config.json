@@ -1,0 +1,20 @@
+{
+  "github": {
+    "topics": ["ai", "llm", "agent", "claude", "gpt", "deepseek", "openai", "anthropic", "cursor", "rag", "langchain", "model", "token", "chatbot", "coding", "codex", "ollama", "vllm", "embedding", "fine-tune", "vector", "workflow", "autonomous", "automation", "video", "image", "tts", "speech", "stable", "diffusion", "midjourney", "generative", "gemma", "qwen", "kimi", "minimax", "mistral", "phi", "gemini"],
+    "period": "past_24_hours",
+    "limit": 5
+  },
+  "product_hunt": {
+    "category": "ai",
+    "days_ago": 1,
+    "limit": 5
+  },
+  "tts": {
+    "provider": "mmx-cli",
+    "voice": "Chinese (Mandarin)_Warm_Girl",
+    "skip": true
+  },
+  "output": {
+    "dir": "~/.hermes/data/ai-daily-news-v2/"
+  }
+}

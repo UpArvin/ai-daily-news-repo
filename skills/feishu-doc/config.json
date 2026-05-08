@@ -1,0 +1,12 @@
+{
+  "wiki": {
+    "space_id": "",
+    "parent_node_token": ""
+  },
+  "message": {
+    "default_chat_id": ""
+  },
+  "media": {
+    "auto_transcode": true
+  }
+}

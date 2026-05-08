@@ -1,0 +1,6 @@
+{
+  "provider": "mmx-cli",
+  "voice": "Chinese (Mandarin)_Warm_Girl",
+  "timeout": 60,
+  "filename": "audio.mp3"
+}
