@@ -4,7 +4,7 @@
 
 ### 当前定位
 
-AI Daily News 是一个 Hermes skills bundle。用户安装后通过 Hermes 触发词使用，不需要记 Python 脚本路径。
+AI Daily News 是一个 Hermes skill 工程仓库。用户安装后通过 Hermes 触发词使用，不需要记 Python 脚本路径。
 
 最小功能是生成本地 Markdown AI 日报：
 
