@@ -29,7 +29,7 @@
 ```text
 ai-daily-news-repo/
 ├── README.md
-├── Agent.md
+├── AGENT.md
 ├── RELEASE_NOTES.md
 ├── scripts/
 │   └── install.py
@@ -145,8 +145,10 @@ AI_DAILY_NEWS_OUTPUT_DIR=/tmp/ai-daily-news-run python3 ~/.hermes/skills/ai-dail
 ```bash
 python3 skills/ai-daily-news-v2/tests/test_v2.py
 python3 skills/github-trending/tests/test_github_trending.py
-python3 skills/feishu-doc/tests/test_feishu_doc.py
+python3 skills/llm-tasks/tests/test_setup_guide.py
 ```
+
+`python3 skills/feishu-doc/tests/test_feishu_doc.py` 是真实飞书集成测试，需要已配置 `.env.feishu`、本机可用 `lark-cli`，并且当前进程能访问 lark-cli keychain。
 
 测试安装到临时目录：
 
@@ -342,8 +344,8 @@ run_summary.json
 ```bash
 python3 skills/ai-daily-news-v2/tests/test_v2.py
 python3 skills/github-trending/tests/test_github_trending.py
-python3 skills/feishu-doc/tests/test_feishu_doc.py
+python3 skills/llm-tasks/tests/test_setup_guide.py
 HERMES_SKILLS_DIR=/tmp/hermes-skills-test python3 scripts/install.py
 ```
 
-如果验证真实全流程，使用临时输出目录先跑本地 Markdown，再按需测试飞书和 TTS。
+如果验证真实全流程，使用临时输出目录先跑本地 Markdown，再按需测试飞书和 TTS。飞书集成测试需要真实 `.env.feishu`、`lark-cli` 和可访问的本机 keychain。

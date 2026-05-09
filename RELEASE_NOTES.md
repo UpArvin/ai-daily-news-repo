@@ -17,7 +17,7 @@ AI Daily News 是一个 Hermes skill 工程仓库。用户安装后通过 Hermes
 
 - 默认输出目录：`~/.hermes/data/ai-daily-news-v2/`
 - 每次运行保存到：`YYYY-MM-DD/HHMMSS/`
-- 默认只需要配置 LLM provider
+- 默认只需要配置 AI 模型 API Key
 - 默认关闭 TTS：`tts.skip=true`
 - 飞书文档和飞书消息为可选扩展
 - Follow Builders 正文展示精选摘要，同时保存全量远程 feed 到 `follow_builders_raw.json`
@@ -36,6 +36,7 @@ AI Daily News 是一个 Hermes skill 工程仓库。用户安装后通过 Hermes
 
 - 稳定 action 入口：`skills/ai-daily-news-v2/scripts/run.py`
 - 安装/更新脚本：`scripts/install.py`
+- 安装时会从模板生成 env：`llm-tasks/.env.example -> .env`，`feishu-doc/.env.feishu.example -> .env.feishu`
 - LLM provider 统一由 `llm-tasks` 管理
 - Product Hunt 点评支持批量生成、逐条补救和本地兜底
 - 失败补跑通过 `checkpoint.json` 复用已成功阶段
@@ -57,6 +58,8 @@ AI Daily News 是一个 Hermes skill 工程仓库。用户安装后通过 Hermes
 ### 发布前验证
 
 - `python3 skills/ai-daily-news-v2/tests/test_v2.py`：5/5 通过
+- `python3 skills/llm-tasks/tests/test_setup_guide.py`：通过
 - `py_compile`：主要脚本通过
 - `run.py check`：可正常检查配置和输出路径
 - `run.py run-local`：已验证可生成本地 Markdown，并保存 `follow_builders_raw.json`
+- `python3 skills/feishu-doc/tests/test_feishu_doc.py`：需要真实 `.env.feishu`、`lark-cli` 和可访问的本机 keychain；无飞书环境时不作为必跑测试
